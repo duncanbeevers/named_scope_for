@@ -8,7 +8,6 @@ Similar to find_by_attribute methods, these macros provide a more flexible scopi
 
   User.for_group_id(10).find(:all)
 
-Also provides `by` scope that allows you to add order constraints to a query cleanly.
+Also provides `order_by` scope that allows you to add order constraints to a query cleanly.
 
-  User.by(:created_at, :desc)
-
+  User.order_by('created_at DESC', 'id')

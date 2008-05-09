@@ -1,0 +1,14 @@
+Macro for generating attribute-specific selector scopes.
+
+Similar to find_by_attribute methods, these macros provide a more flexible scoping.
+
+  class User < ActiveRecord::Base
+    named_scope_for :group_id
+  end
+
+  User.for_group_id(10).find(:all)
+
+Also provides `by` scope that allows you to add order constraints to a query cleanly.
+
+  User.by(:created_at, :desc)
+

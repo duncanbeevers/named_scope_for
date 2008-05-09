@@ -5,8 +5,9 @@ class ActiveRecord::Base
       lambda { |attribute_value| { :conditions => { attribute => attribute_value } } }
   end
 
-  def self.named_scope_by attribute, desc = nil
-    named_scope "by_#{attribute}", :order => "#{attribute}#{ desc ? ' DESC' : '' }"
-  end
+  named_scope :by, Proc.new { |attribute, desc|
+    raise ArgumentError, 'An attribute to order by must be specified' unless attribute
+    { :order => "#{attribute}#{ desc && :asc != desc ? ' DESC' : '' }" }
+  }
 
 end
